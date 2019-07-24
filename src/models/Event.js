@@ -5,9 +5,10 @@ const ObjectId = Schema.ObjectId;
 
 const Event = new Schema({
   id: ObjectId,
-  title: { type: String, required: true},
+  title: { type: Schema.Types.String, required: true },
   local: { type: String, required: true},
-  date: Date
+  date: Date,
+  participations: [{ type: Schema.Types.ObjectId, ref: 'Participation' }]
 },
 { 
     timestamp: true 
