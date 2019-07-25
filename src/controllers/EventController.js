@@ -7,10 +7,14 @@ class EventController {
         return res.status(200).json(events);
     }
 
-    async create(req, res, next) { 
-        const event = await Event.create(req.body);
+    async create(req, res, next) {
+        try {
+            const event = await Event.create(req.body);
 
-        return res.status(200).json(event);
+            return res.status(200).json(event);
+        } catch(err) {
+            return next(err);
+        }
     }
 
     async show(req, res) { 
