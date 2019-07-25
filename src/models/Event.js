@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
@@ -14,4 +15,5 @@ const Event = new Schema({
     timestamp: true 
 });
 
+Event.plugin(uniqueValidator, { message: 'deve ser único.' });
 module.exports = mongoose.model('Event', Event);
