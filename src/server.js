@@ -16,5 +16,5 @@ app.listen('3000', function() {
 app.use(require('./routes'));
 
 app.use(function(err, req, res, next){
-    res.status(500).json(err);
+    res.status(500).json(err.errors);
 });
