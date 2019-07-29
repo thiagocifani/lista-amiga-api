@@ -1,15 +1,23 @@
 const Event = require("../models/Event");
+const City = require("../models/City");
 
 class EventController {
 
     async index(req, res) { 
-        const events = await Event.find({}).populate('participations');
+        const events = await Event.find({}).populate('participations').populate('city');
         return res.status(200).json(events);
     }
 
     async create(req, res, next) {
         try {
-            const event = await Event.create(req.body);
+            const city  = await City.findById(req.body.cityId);
+
+            const event = await Event.create({
+                title: req.body.title,
+                local: req.body.local,
+                date: req.body.date,
+                city: city._id
+            });
 
             return res.status(200).json(event);
         } catch(err) {

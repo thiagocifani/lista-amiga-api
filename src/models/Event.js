@@ -9,7 +9,8 @@ const Event = new Schema({
   title: { type: Schema.Types.String, required: true, unique: true },
   local: { type: String, required: true},
   date: Date,
-  participations: [{ type: Schema.Types.ObjectId, ref: 'Participation' }]
+  participations: [{ type: Schema.Types.ObjectId, ref: 'Participation' }],
+  city: { type: ObjectId, ref: 'City'}
 },
 { 
     timestamp: true 
